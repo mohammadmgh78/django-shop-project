@@ -24,3 +24,4 @@ class OrderHistory(models.Model):
 
     def __str__(self):
         return f'{self.order.__str__()}'
+
