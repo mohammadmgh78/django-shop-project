@@ -1,21 +1,25 @@
 body {
-    background-color: rgba(96, 161, 224, 0.18);
+    background-color: rgba(132, 196, 160, 0.75);
 }
 
+p {
+    color: #26ff00;
+}
 .nav {
     position: fixed;
     display: flex;
     justify-content: space-between;
-    background-color: #233c55;
+    background-color: rgba(7, 21, 3, 0.75);
     top: 0;
     width: 100%;
     padding: 10px;
     z-index: 10;
+    margin-bottom: 5px;
 }
 
 .navs-button {
     margin-right: 25px;
-    background-color: #60a1e0;
+    background-color: #2f6f42;
     margin-top: 10px;
 }
 
@@ -59,3 +63,6 @@ body {
     z-index: 10;
 }
 
+.container {
+    margin-top: 100px;
+}

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'users/base.css' %}">
+
 
     <link rel="stylesheet" href="{% block css_href %}{% endblock %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,12 +19,14 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'users/css/base.css' %}">
     <title>{% block title %}{% endblock %}</title>
     {% block style %}{% endblock %}
     {% block extra_head %}{% endblock %}
 </head>
 <body>
 <div class="main-container">
+
     <div class="header">
         <nav class="container-fluid nav">
 
@@ -39,7 +41,7 @@
                 {% block right_items_in_nav %}{% endblock %}
                 <div class="logo-container">
                     <a href="#">
-                        <img src="#" class="navbar-logo" alt="w logo">
+                        <img src="{% static 'users/img/download.jpg' %}" class="navbar-logo" alt="w logo">
                     </a>
                 </div>
             </div>
