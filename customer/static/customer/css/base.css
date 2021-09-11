@@ -1,0 +1,68 @@
+body {
+    background-color: rgba(132, 196, 160, 0.75);
+}
+
+p {
+    color: #26ff00;
+}
+.nav {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(7, 21, 3, 0.75);
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 10;
+    margin-bottom: 5px;
+}
+
+.navs-button {
+    margin-right: 25px;
+    background-color: #2f6f42;
+    margin-top: 10px;
+}
+
+.search > button {
+    background-color: #60a1e0;
+}
+
+.right-items-in-nav {
+    display: flex;
+    justify-content: start;
+}
+
+.logo-container {
+    max-height: 16%;
+}
+
+.navbar-logo {
+    max-height: 55px;
+}
+
+.main-component {
+    margin: 10% auto auto;
+}
+
+#card-container {
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+.footer {
+    height: 60px;
+    bottom: 0;
+    width: 100%;
+    background-color: #233c55;
+    z-index: 10;
+}
+
+.container {
+    margin-top: 100px;
+}
