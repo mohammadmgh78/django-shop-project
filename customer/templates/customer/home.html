@@ -10,7 +10,15 @@
     <a href="{% url 'customer:create_customer' %}">
         <button type="button" class="btn navs-button">Register</button>
     </a>
-    <a href="#">
+    {% if user.is_authenticated %}
+        <a href="{% url 'customer:create_customer' %}">
+        <button type="button" class="btn navs-button">profile</button>
+    </a>
+        <a href="{% url 'customer:logout_customer' %}">
+        <button type="button" class="btn navs-button">logout</button>
+    </a>
+    {% endif %}
+    <a href="{% url 'customer:login_customer'%}">
         <button type="button" class="btn navs-button">Login</button>
     </a>
 {% endblock %}

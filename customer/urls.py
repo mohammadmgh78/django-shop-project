@@ -8,6 +8,8 @@ app_name = 'customer'
 urlpatterns = [
                   path('create-customer/', views.create_cutomer, name='create_customer'),
                   path('', views.home, name='home'),
+                  path('login-customer/', views.login_customer, name='login_customer'),
+                  path('logout-customer/', views.logout_customer, name='logout_customer'),
 
               ] + static(settings.STATIC_URL,
                          document_root=settings.STATIC_ROOT)  # is this import of setting correct? check this later
