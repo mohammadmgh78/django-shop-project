@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from customer.models import Customer
+
 
 def create_cutomer(request):
     if request.method == 'GET':
@@ -39,3 +41,19 @@ def logout_customer(request):
     logout(request)
     print('success')
     return render(request, 'customer/login.html')
+
+
+def profile_customer(request):
+    if request.method == "GET":
+        customer = Customer.objects.filter(owner=request.user).first()
+        return render(request, 'customer/profile.html', {'customer':customer})
+    if request.method == "POST":
+        customer = Customer.objects.filter(owner=request.user).first()
+        customer.first_name = request.POST['first_name']
+        customer.last_name = request.POST['last_name']
+        customer.email = request.POST['email']
+        customer.city_born = request.POST['city_born']
+        customer.closest_friend = request.POST['closest_friend']
+        customer.username = request.POST['username']
+        customer.save()
+        return render(request, 'customer/profile.html', {'customer': customer})

@@ -10,6 +10,7 @@ urlpatterns = [
                   path('', views.home, name='home'),
                   path('login-customer/', views.login_customer, name='login_customer'),
                   path('logout-customer/', views.logout_customer, name='logout_customer'),
+                path('profile-customer/', views.profile_customer, name='profile_customer'),
 
               ] + static(settings.STATIC_URL,
                          document_root=settings.STATIC_ROOT)  # is this import of setting correct? check this later
