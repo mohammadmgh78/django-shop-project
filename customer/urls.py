@@ -6,7 +6,7 @@ from . import views
 
 app_name = 'customer'
 urlpatterns = [
-                  path('create_customer/', views.create_cutomer, name='create_customer'),
+                  path('create-customer/', views.create_cutomer, name='create_customer'),
                   path('', views.home, name='home'),
 
               ] + static(settings.STATIC_URL,
