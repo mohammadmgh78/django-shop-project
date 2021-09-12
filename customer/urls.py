@@ -11,6 +11,8 @@ urlpatterns = [
                   path('login-customer/', views.login_customer, name='login_customer'),
                   path('logout-customer/', views.logout_customer, name='logout_customer'),
                   path('profile-customer/', views.profile_customer, name='profile_customer'),
-                  path('change-customer-password/', views.customer_change_password, name='customer_change_password'),
+                  path('customer-change-password/', views.customer_change_password, name='customer_change_password'),
+                  path('customer-forgot-password/', views.customer_forgot_password, name='customer_forgot_password'),
+                  path('customer-reset-password/', views.customer_reset_password, name='customer_reset_password'),
               ] + static(settings.STATIC_URL,
                          document_root=settings.STATIC_ROOT)  # is this import of setting correct? check this later

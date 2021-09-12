@@ -60,3 +60,12 @@ def profile_customer(request):
 
 def customer_change_password(request):
     return render(request, 'customer/change_password.html')
+
+
+
+def customer_forgot_password(request):
+    return render(request, 'customer/forgot_password.html')
+
+
+def customer_reset_password(request):
+    return render(request, 'customer/reset_password.html')
