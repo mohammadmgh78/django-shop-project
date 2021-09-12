@@ -31,7 +31,7 @@
         <nav class="container-fluid nav">
 
             <div class="left_items_in_nav">
-                <a href="#">
+                <a href="{% url 'customer:home'%}">
                     <button type="button" class="btn navs-button">Home</button>
                 </a>
                 {% block left_items_in_nav %}{% endblock %}
@@ -59,10 +59,6 @@
         </div>
     </div>
 
-    {#    <div class="container-fluid footer" id="footer">#}
-    {#        <p style="color: white">This is footer</p> <!--delete this line -->#}
-    {#        {% block extra_footer %}{% endblock %}#}
-    {#    </div>#}
 </div>
 
 {% block js %}{% endblock %}

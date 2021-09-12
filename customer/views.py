@@ -57,3 +57,7 @@ def profile_customer(request):
         customer.username = request.POST['username']
         customer.save()
         return render(request, 'customer/profile.html', {'customer': customer})
+
+
+def customer_change_password(request):
+    return render(request, 'customer/change_password.html')
