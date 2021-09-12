@@ -38,7 +38,7 @@ class CreateCustomerAPI(APIView):
         user_serializer = UserSerializer(data=user_data)
         if user_serializer.is_valid():
             print('user_serializer is valid!')
-            user_created = User.objects.create_user(username=user_data['username'], password=user_data['password'])
+            user_created = User.objects.create_user(username=user_data['username'], password=user_data['password'], email=customer_data['email'])
             print(user_created)
 
         if customer_serializer.is_valid():

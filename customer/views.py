@@ -33,7 +33,6 @@ def login_customer(request):
         if user is not None:
             login(request, user)
             return redirect('http://127.0.0.1:8000/customer/')
-
     return render(request, 'customer/login.html')
 
 
