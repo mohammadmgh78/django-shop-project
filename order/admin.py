@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from order.models import Order, Discount, OrderHistory
+from order.models import Order,  OrderHistory
 
 
 @admin.register(Order)
@@ -8,9 +8,9 @@ class OrderAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Discount)
-class DiscountAdmin(admin.ModelAdmin):
-    pass
+# @admin.register(Discount)
+# class DiscountAdmin(admin.ModelAdmin):
+#     pass
 
 
 @admin.register(OrderHistory)
