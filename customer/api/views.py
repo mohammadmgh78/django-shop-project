@@ -6,8 +6,8 @@ User = get_user_model()
 # from customer.models import Customer
 #
 #
-from customer.api.serializers import CustomerSerializer, UserSerializer
-from customer.models import Customer
+from customer.api.serializers import CustomerSerializer, UserSerializer, StaffSerializer
+from customer.models import Customer, Staff
 
 
 class CreateCustomerAPI(APIView):
@@ -90,3 +90,45 @@ class ChangePasswordView(generics.UpdateAPIView):
             return Response(response)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateStaffAPI(APIView):
+
+    def get(self, request, format=None):
+        print('here')
+        print(Staff.objects.all())
+        serializer = StaffSerializer(Staff.objects.all(), many=True)
+        return Response(serializer.data)
+
+    @csrf_exempt
+    def post(self, request, format=None):
+        print(request.data)
+        # print(request.data['select_student'])
+        # print('successsss')
+        # student = Customer.objects.get(pk=request.data['select_student'])
+        # for lesson_id in request.data['lessons']:
+        #     lesson = Lesson.objects.get(pk=lesson_id)
+        #     lesson.students.add(student)
+        #     student.lessons.add(lesson)
+        #     lesson.save()
+        #     student.save()
+
+        # serializer = StudentSerializer(Student.objects.all(), many=True)
+        staff_data = dict(list(request.data.items())[1:5])
+        user_data = dict(list(request.data.items())[5:7])
+        staff_serializer = StaffSerializer(data=staff_data)
+        user_serializer = UserSerializer(data=user_data)
+        if user_serializer.is_valid():
+            print('user_serializer is valid!')
+            user_created = User.objects.create_user(username=user_data['username'], password=user_data['password'], email=staff_data['email'])
+            print(user_created)
+
+        if staff_serializer.is_valid() and user_serializer.is_valid():
+            print('staff_serializer is valid!')
+            staff_created = staff_serializer.save()
+            staff_created.owner = user_created
+            staff_created.save()
+        print(staff_data)
+        print(user_data)
+        # print(list(request.data.items()))
+        return Response({})

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from customer.models import Customer
+from customer.models import Customer, Manager, Staff
 
 
 def create_cutomer(request):
@@ -14,7 +14,15 @@ def create_cutomer(request):
 
 
 def home(request):
-    return render(request, 'customer/home.html')
+    logged_in = ''
+    if Manager.objects.filter(owner=request.user):
+        logged_in = 'manager'
+    elif Staff.objects.filter(owner=request.user):
+        logged_in = 'staff'
+    elif Customer.objects.filter(owner=request.user):
+        logged_in = 'customer'
+
+    return render(request, 'customer/home.html', {'logged_in': logged_in})
 
 
 from django.contrib.auth import get_user_model, authenticate, login, logout
@@ -45,7 +53,7 @@ def logout_customer(request):
 def profile_customer(request):
     if request.method == "GET":
         customer = Customer.objects.filter(owner=request.user).first()
-        return render(request, 'customer/profile.html', {'customer':customer})
+        return render(request, 'customer/profile.html', {'customer': customer})
     if request.method == "POST":
         customer = Customer.objects.filter(owner=request.user).first()
         customer.first_name = request.POST['first_name']
@@ -62,10 +70,15 @@ def customer_change_password(request):
     return render(request, 'customer/change_password.html')
 
 
-
 def customer_forgot_password(request):
     return render(request, 'customer/forgot_password.html')
 
 
 def customer_reset_password(request):
     return render(request, 'customer/reset_password.html')
+
+
+def create_staff(request):
+    if request.method == 'GET':
+        print('create_staff in customer/views')
+        return render(request, 'customer/register_staff.html')

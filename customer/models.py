@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-
 User = get_user_model()
+
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
@@ -14,6 +14,8 @@ class Customer(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+
 
 
 class Address(models.Model):
@@ -34,15 +36,15 @@ class Discount(models.Model):
     DEACTIVE = 'deactive'
     choices = (
         (ACTIVE, 'active'),
-   ( DEACTIVE , 'deactive')
+        (DEACTIVE, 'deactive')
     )
     order_status = models.CharField(max_length=30, choices=choices, db_index=True,
-                                  default=ACTIVE,
-                                  help_text='status of the discount')
+                                    default=ACTIVE,
+                                    help_text='status of the discount')
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, blank=True, null=True)
+
     def __str__(self):
         return self.discount_amount
-
 
 
 from django.dispatch import receiver
@@ -53,8 +55,8 @@ from django.core.mail import send_mail
 
 @receiver(reset_password_token_created)
 def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
-
-    email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
+    email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'),
+                                                   reset_password_token.key)
 
     send_mail(
         # title:
@@ -66,3 +68,25 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # to:
         [reset_password_token.user.email]
     )
+
+
+class Staff(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.CharField(max_length=100)
+    personnel_code = models.CharField(max_length=50)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class Manager(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.CharField(max_length=100)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
