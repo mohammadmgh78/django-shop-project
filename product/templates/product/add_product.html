@@ -1,0 +1,75 @@
+{% extends 'customer/base.html' %}
+
+{% block title %}WebBlog | Sign up{% endblock %}
+
+{% block left_items_in_nav %}
+    <a href="">
+        <button type="button" class="btn navs-button">Login</button>
+    </a>
+{% endblock %}
+
+
+{% block main %}
+
+    <style>
+        #short-time-msg {
+            color: blue;
+            background: lightblue;
+            font-weight: bolder
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" id="card-container">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5"><b>Add Product</b></h5>
+                        <form method="post" id="customer-form" action="{% url 'product:add_product' %}"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="name" id="name" required>
+
+                                <label for="name">Product Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="price" id="price" required>
+
+                                <label for="last_name">Price</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="description" id="description">
+                                </textarea>
+                                <label for="description">description</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select name="select_category">
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="select_category">Category</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" name="image" id="image" required>
+
+                                <label for="image">image</label>
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold" id="submit"
+                                        type="submit">add product
+                                </button>
+                            </div>
+
+                            <hr class="my-4">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_footer %}{% endblock %}
