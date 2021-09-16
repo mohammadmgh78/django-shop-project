@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from customer.models import Customer, Manager, Staff
+from product.models import Product, Category
 
 
 def create_cutomer(request):
@@ -21,8 +22,18 @@ def home(request):
         logged_in = 'staff'
     elif Customer.objects.filter(owner=request.user):
         logged_in = 'customer'
+    try:
+        if request.GET['select_category'] == 'none':
+            products = Product.objects.all()
+        else:
+            category = Category.objects.filter(pk=request.GET['select_category']).first()
+            products = category.product_set.all()
+    except:
+        products = Product.objects.all()
+    categories = Category.objects.all()
 
-    return render(request, 'customer/home.html', {'logged_in': logged_in})
+    return render(request, 'customer/home.html',
+                  {'logged_in': logged_in, 'products': products, 'categories': categories})
 
 
 from django.contrib.auth import get_user_model, authenticate, login, logout
