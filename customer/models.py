@@ -30,7 +30,7 @@ class Address(models.Model):
 
 
 class Discount(models.Model):
-    discount_amount = models.IntegerField()
+    discount_amount = models.CharField(max_length=5)
     discount_description = models.CharField(max_length=80)
     ACTIVE = 'active'
     DEACTIVE = 'deactive'
@@ -38,7 +38,7 @@ class Discount(models.Model):
         (ACTIVE, 'active'),
         (DEACTIVE, 'deactive')
     )
-    order_status = models.CharField(max_length=30, choices=choices, db_index=True,
+    discount_status = models.CharField(max_length=30, choices=choices, db_index=True,
                                     default=ACTIVE,
                                     help_text='status of the discount')
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, blank=True, null=True)

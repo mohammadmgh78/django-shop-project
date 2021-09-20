@@ -6,16 +6,14 @@ from product.models import Product
 
 class Order(models.Model):
     products = models.ManyToManyField(Product)
-    number_of_products = models.JSONField()
+    number_of_products = models.JSONField(blank=True, null=True)
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     CONFIRMED = 'confirmed'
-    CANCELLED = 'cancelled'
     ON_WAY = 'on the way'
     DELIVERED = 'delivered'
     NOT_SELECTED = ''
     choices = (
         (CONFIRMED, 'confirmed'),
-        (CANCELLED, 'cancelled'),
         (ON_WAY, 'on the way'),
         (DELIVERED, 'delivered'),
         (NOT_SELECTED, 'Not Selected'),
@@ -23,7 +21,7 @@ class Order(models.Model):
     order_status = models.CharField(max_length=30, choices=choices, db_index=True,
                                     default=NOT_SELECTED,
                                     help_text='status of the order')
-    date_submitted = models.DateField(auto_now=True)
+    date_submitted = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f'order of {self.user}'
@@ -31,7 +29,7 @@ class Order(models.Model):
 
 class OrderHistory(models.Model):
     order = models.OneToOneField(Order, on_delete=models.RESTRICT)
-    user = models.ForeignKey(Customer, on_delete=models.RESTRICT)  # thiw might be wrong
+    user = models.ForeignKey(Customer, on_delete=models.RESTRICT)  # this might be wrong
 
     def __str__(self):
         return f'{self.order.__str__()}'

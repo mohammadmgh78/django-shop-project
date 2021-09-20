@@ -132,3 +132,5 @@ class CreateStaffAPI(APIView):
         print(user_data)
         # print(list(request.data.items()))
         return Response({})
+
+
