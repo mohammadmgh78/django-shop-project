@@ -16,12 +16,16 @@ def create_cutomer(request):
 
 def home(request):
     logged_in = ''
-    if Manager.objects.filter(owner=request.user):
-        logged_in = 'manager'
-    elif Staff.objects.filter(owner=request.user):
-        logged_in = 'staff'
-    elif Customer.objects.filter(owner=request.user):
-        logged_in = 'customer'
+    try:
+        if Manager.objects.filter(owner=request.user):
+            logged_in = 'manager'
+        elif Staff.objects.filter(owner=request.user):
+            logged_in = 'staff'
+        elif Customer.objects.filter(owner=request.user):
+            logged_in = 'customer'
+    except:
+        logged_in = ''
+
     try:
         if request.GET['select_category'] == 'none':
             products = Product.objects.all()
