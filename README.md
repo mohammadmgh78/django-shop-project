@@ -1,2 +1,1 @@
-# django-shop-project
-just started the project
+django project  for developing a Website.
